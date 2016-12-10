@@ -12,7 +12,7 @@ RUN export DEBIAN_FRONTEND="noninteractive" && \
 		sqlite3 \
 		--no-install-recommends && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/geek-kb/tikal_assignment.git /root/project
+RUN git clone https://github.com/geek-kb/tikal_devops_task.git /root/project
 
 RUN pip install /root/project/django
 RUN cd /root/project/django && django-admin startproject mysite
