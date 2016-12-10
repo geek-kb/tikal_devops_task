@@ -1,0 +1,46 @@
+---
+- name: Install dependencies
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - linux-image-generic-lts-{{ ansible_distribution_release }}
+    - linux-headers-generic-lts-{{ ansible_distribution_release }}
+  become: true
+
+- name: Add Docker repository key
+  apt_key:
+    id: 58118E89F3A912897C070ADBF76221572C52609D
+    keyserver: hkp://p80.pool.sks-keyservers.net:80
+    state: present
+  register: add_repository_key
+  become: true
+
+- name: Add Docker repository
+  apt_repository:
+    repo: 'deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main'
+    state: present
+  become: true
+
+- name: Install Docker
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - docker-engine
+  become: true
+
+- name: Verify the service is running
+  service: name={{ item }} enabled=yes state=started
+  with_items:
+    - docker
+  become: true
+
+- name: Install pip
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - python-dev
+    - python-pip
+  become: true
+
+- name: Install Docker-py
+  pip:
+    name: docker-py
+    version: 1.10.6
+  become: true

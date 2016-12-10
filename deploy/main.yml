@@ -1,0 +1,9 @@
+---
+- name: Deploy
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: yes
+  roles:
+    - install-docker
+    - pull-docker-image

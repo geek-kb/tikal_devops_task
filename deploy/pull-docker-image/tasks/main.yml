@@ -1,0 +1,15 @@
+---
+
+- name: Pull Image
+  docker_image:
+    name: "camelel/django"
+    pull: true
+    state: present
+
+- name: Start Container
+  docker_container:
+    name: "django"
+    image: "camelel/django"
+    state: started
+    ports:
+      - "80:80"
