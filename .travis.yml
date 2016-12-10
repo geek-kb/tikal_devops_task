@@ -1,0 +1,20 @@
+language: python
+env:
+  global:
+    DOCKER_USER:
+      secure: Gz5MoU4+W8WqvN9Ezq0LctUawaOMfBFdQqTzdnUA6gD8WKQfgS6Qd2pH47mE+UPYmwJUG6JMXZgJxR7/vGQybWAIujFItQ3NsYMdvJAyQKpPLaExT1OBJNhWUJEZfe645bti3LwbD0Hh7PXMn28CYZp00FmQLrxlEPG4GFROtBR2Y+azJMo/w16W646/6SUKQ6jij1CGLd2LVVty99117nroDzkmYYSbXPnuDug4x/2ATetK7E+SQxYxNanGCRYvG/JscYSxfGwVkxzI75dnb+yf9uQT0ZIZQ5Ypl5ElucfuXpNLTr9lD8+l40sN+bdKfwFcSCc3sVeLtoQZisjr58MPday+a/Zkrhpj4pys6q9HedmknvSo2iyC7vo+0UdtXLYj56EFj5Y2pbmZ4FP/pUSFD+ITo+Rtlu4WrZMhUM35B70VB3VxsVimzsEGCmNi0tbrwFHK4tri0K5i4syC/TBsBG21LHKGr0IPYDm6AgaISY6RK9d+IlWWI2K6L2WtOm+0+T8egrsCUMuA5lTs6EVtihAgIwsmMYppeema1+H/B8Lb96DKjXxqmWqj72vkbAXRJOX1U0NfkRUWkDWQDqGTuioCGsiSydSEG6EZ+o/r9Ic/7498Vz1B652TrA4YxSFUgnzbEhmYNNeKH6u0FfK3e1x7WddL2v9sZNIDWOA=
+    DOCKER_PASSWD:
+      secure: TGcjNOOnN/soad1KbSQAj0CAvGYMQE3qFNTGqBaZ7MVNa/S79L5gQ3Hjbhjbid76iXuct+9OYnPJPmMF9I9y2oHU3MqIr/tSTamqwuaaT887WqZAvCsMaw2cTW7GYxDWWYgVEVFE95xfzq+LtJDas0vGQN+zStxMUYiLyBIeqse293Kin4U+IH/93+GodKZRL07kniRbry0/lInFwn8CSAK6HTu1+0uBCGCg25qFpMqiwcFOsWeSa89UpPYS5HzudZPoXtP8zOzyeZrKLSaPYodvwWiRGk7rt281hKzfXJ90y6vKNP9F2Ivhuy4ji3SNc5hcph7iiiunit6P3OXDn2MG8E8HA+dq+lsVZDexpQ1gFM+5Y893Cv4/4l4OCTDZKd6IbdVER2nH6wYgHKIWvEvC/msFcveVN1PmsxF5SN+Y0nTB/WqP5k4tXrl0SE6EwvKxHIsdxFdRSwhnptF1yTcgIzy8OK+Gg8uqcgZXW4XubdLAZm9V/tZu7C1/WrdohJpnqrjGPlRh4TMYu4ezjo84XT26+UhBZwUyplwWDgsM30Y5H2e63C2czyw50NHvpiG6D/G/GUXw0Xh1rTNkhQWhFBVhG3wdghgKNQsqqQMNIABONd3Ek3qJNIpidoJaeeApkThNq3L8EqOmyv2D8aa95VFDVEOQhO9OnXCk6uM=
+services:
+- docker
+before_install:
+- docker build -t camelel/django .
+- docker run -d -p 80:80 -t camelel/django
+install: true
+script:
+- python pytest.py
+after_success:
+- docker login -u="$DOCKER_USER" -p="$DOCKER_PASSWD"
+- IMAGE=$(docker ps -l | awk '{print $2}' | grep -v ID)
+- docker tag $IMAGE camelel/django:$TRAVIS_BUILD_NUMBER
+- docker push camelel/django
