@@ -1,3 +1,5 @@
+https://travis-ci.org/geek-kb/tikal_devops_task.svg?branch=master
+
 ## Tikal DevOps home task
 This repository contains the result of the DevOps home task which configures and deploys a django server.
 
