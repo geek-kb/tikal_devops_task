@@ -29,4 +29,5 @@ When the playbook finishes the run, there are a few ways to verify that django s
  
 ## Links
 * Travis-CI: https://travis-ci.org/geek-kb/tikal_devops_task
+* My profile at Docker Hub: https://hub.docker.com/r/camelel/django/
 * Demo of the ansible-playbook run: http://asciinema.org/a/11m41h2xt6lfiwawp3agqwdi4
