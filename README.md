@@ -1,4 +1,5 @@
-https://travis-ci.org/geek-kb/tikal_devops_task.svg?branch=master
+## Status
+[![Build Status](https://travis-ci.org/geek-kb/tikal_devops_task.svg?branch=master)](https://travis-ci.org/geek-kb/tikal_devops_task)
 
 ## Tikal DevOps home task
 This repository contains the result of the DevOps home task which configures and deploys a django server.
@@ -22,8 +23,8 @@ ansible-playbook deploy/main.yml
 
 When the playbook finishes the run, there are a few ways to verify that django server is up and running:
 
-* Run: curl -I localhost and expect a 200 OK http response.
-* Run: netstat -an | grep ":80"
+* Run: curl -I (It's a capital i) localhost and expect a 200 OK http response.
+* Run: netstat -an | grep ":80" .
 * Run: sudo apt-get install -y lynx && lynx localhost and expect to see a "It works!" page.
  
 ## Links
