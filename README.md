@@ -18,7 +18,7 @@ In order to test the automatic build, simply browse to my travis-ci space (the l
 
 ansible-playbook deploy/main.yml
 
-4. When the playbook finishes the run, there are a few ways to verify that django server is up and running:
+When the playbook finishes the run, there are a few ways to verify that django server is up and running:
 
 * Run: curl -I localhost and expect a 200 OK http response.
 * Run: netstat -an | grep ":80"
