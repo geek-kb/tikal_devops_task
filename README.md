@@ -1,7 +1,7 @@
 ## Tikal DevOps home task
 This repository contains the result of the DevOps home task which configures and deploys a django server.
 
-## Prequesites
+## Prerequesites
 * Ansible 2.2.x
 * Python 2.7
 * GitHub account
