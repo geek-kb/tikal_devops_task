@@ -4,6 +4,10 @@ This repository contains the result of the DevOps home task which configures and
 ## Status
 [![Build Status](https://travis-ci.org/geek-kb/tikal_devops_task.svg?branch=master)](https://travis-ci.org/geek-kb/tikal_devops_task)
 
+## Docker image metadata
+[![](https://images.microbadger.com/badges/image/camelel/django.svg)](https://microbadger.com/images/camelel/django)
+[![](https://images.microbadger.com/badges/version/camelel/django.svg)](https://microbadger.com/images/camelel/django)
+
 ## Prerequisites
 * Ansible 2.2.x
 * Python 2.7
