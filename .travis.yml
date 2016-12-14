@@ -16,3 +16,4 @@ after_success:
 - IMAGE=$(docker ps -l | awk '{print $2}' | grep -v ID)
 - docker tag $IMAGE camelel/django:$TRAVIS_BUILD_NUMBER
 - docker push camelel/django
+- curl -s -X POST -d "Update microbadger" https://hooks.microbadger.com/images/camelel/django/eneKOY6Po6-Me3Gy9JJk76ALIiA=
