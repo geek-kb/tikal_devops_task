@@ -1,4 +1,7 @@
 node (){
+	stage('git'){
+		checkout scm
+	}
 	stage('docker build'){
 		sh """
 		docker build -t tdt:latest .
